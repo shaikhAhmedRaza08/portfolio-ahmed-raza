@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   Design tokens (Tailwind v4 CSS-first config).
+   Each token generates the matching utilities, e.g.
+   --color-accent-violet  ->  bg-accent-violet / text-accent-violet / border-accent-violet
+   --container-content     ->  max-w-content
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+
+  --color-base: #0a0a0f;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-violet-dark: #7c3aed;
+  --color-accent-violet-light: #a78bfa;
+  --color-accent-violet-pale: #c4b5fd;
+  --color-accent-cyan: #06b6d4;
+
+  --container-content: 1100px;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor targets so sticky navbar doesn't cover headings. */
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--color-base);
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Gradient text utility (violet → cyan). */
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle custom scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.25);
+  border-radius: 9999px;
+  border: 2px solid #0a0a0f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.45);
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: #fff;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Scroll-driven reveal — pure CSS, zero JS, degrades gracefully.
+   Where `animation-timeline` is unsupported, content simply shows.
+   ────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+
+    @keyframes reveal-in {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+}
