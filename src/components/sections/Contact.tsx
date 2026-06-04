@@ -5,6 +5,14 @@ import { ContactLink } from "@/components/ui/ContactLink";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { PERSONAL } from "@/lib/constants";
 
+
+const INFO = [
+  { href: `mailto:${PERSONAL.email}`, icon: Mail, label: "Email", value: PERSONAL.email },
+  { href: `tel:${PERSONAL.phone.replace(/\s/g, "")}`, icon: Phone, label: "Phone", value: PERSONAL.phone },
+  { href: PERSONAL.linkedin, icon: Linkedin, label: "LinkedIn", value: 'ahmed-raza-shaikh' },
+  { href: PERSONAL.github, icon: Github, label: "GitHub", value: 'ahmed-raza-shaikh' },
+];
+
 export function Contact() {
   return (
     <Section id="contact" innerClassName="max-w-content mx-auto px-6 sm:px-8 py-20 sm:py-[100px] sm:pb-[120px]">
@@ -19,32 +27,16 @@ export function Contact() {
           </p>
 
           <div className="grid gap-3">
-            <ContactLink
-              href={`mailto:${PERSONAL.email}`}
-              icon={<Mail className="h-4 w-4" aria-hidden />}
-              label="Email"
-              value={PERSONAL.email}
-            />
-            <ContactLink
-              href={`tel:${PERSONAL.phone.replace(/\s/g, "")}`}
-              icon={<Phone className="h-4 w-4" aria-hidden />}
-              label="Phone"
-              value={PERSONAL.phone}
-            />
-            <ContactLink
-              href={PERSONAL.github}
-              icon={<Github className="h-4 w-4" aria-hidden />}
-              label="GitHub"
-              value="shaikhAhmedRaza08"
-              external
-            />
-            <ContactLink
-              href={PERSONAL.linkedin}
-              icon={<Linkedin className="h-4 w-4" aria-hidden />}
-              label="LinkedIn"
-              value="ahmed-raza-shaikh"
-              external
-            />
+            {INFO.map(({ href, icon: Icon, label, value }, index) => (
+              <ContactLink
+                key={index}
+                href={href}
+                icon={<Icon className="h-4 w-4" aria-hidden />}
+                label={label}
+                value={value}
+                external={label === "LinkedIn" || label === "GitHub"}
+              />
+            ))}
           </div>
         </div>
 

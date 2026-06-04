@@ -1,15 +1,14 @@
-import { GraduationCap, MapPin, Mail, Phone, BriefcaseBusiness, Globe  } from "lucide-react";
+import { Mail, Phone, Linkedin, Github, Icon } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PERSONAL } from "@/lib/constants";
+import { ContactLink } from "../ui/ContactLink";
 
 const INFO = [
-  // { icon: MapPin, label: "Location", value: PERSONAL.location },
-  // { icon: GraduationCap, label: "Education", value: PERSONAL.education },
-  { icon: Mail, label: "Email", value: PERSONAL.email },
-  { icon: Phone, label: "Phone", value: PERSONAL.phone },
-  { icon: BriefcaseBusiness, label: "LinkedIn", value: PERSONAL.linkedin },
-  { icon: Globe, label: "GitHub", value: PERSONAL.github },
+  { href: `mailto:${PERSONAL.email}`, icon: Mail, label: "Email", value: PERSONAL.email },
+  { href: `tel:${PERSONAL.phone.replace(/\s/g, "")}`, icon: Phone, label: "Phone", value: PERSONAL.phone },
+  { href: PERSONAL.linkedin, icon: Linkedin, label: "LinkedIn", value: 'ahmed-raza-shaikh' },
+  { href: PERSONAL.github, icon: Github, label: "GitHub", value: 'ahmed-raza-shaikh' },
 ];
 
 export function About() {
@@ -40,20 +39,16 @@ export function About() {
 
         {/* Info cards */}
         <div className="reveal grid gap-4 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-1 h-50">
-          {INFO.map(({ icon: Icon, label, value }) => (
-            <div
-              key={label}
-              className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] px-[18px] py-3.5"
-            >
-              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent-violet/12 text-accent-violet-light">
-                <Icon className="h-4 w-4" aria-hidden />
-              </span>
-              <span className="min-w-0">
-                <span className="mb-0.5 block text-[11px] uppercase tracking-[1px] text-[#e2e8f0]/70">
-                  {label}
-                </span>
-                <span className="block text-sm text-[#e2e8f0]">{value}</span>
-              </span>
+          {INFO.map(({ href, icon: Icon, label, value }, index) => (
+            <div key={index} className="grid gap-3">
+              <ContactLink
+                href={href}
+                icon={<Icon className="h-4 w-4" aria-hidden />}
+                label={label}
+                value={value}
+                key={index}
+                external={label === "LinkedIn" || label === "GitHub"}
+              />
             </div>
           ))}
         </div>
