@@ -13,7 +13,7 @@ export function Hero() {
         </span>
       </span>
 
-      <p className="mb-3 mt-6 text-base uppercase tracking-[3px] text-[#e2e8f0]/50">
+      <p className="mb-3 mt-6 uppercase tracking-[3px] text-[#e2e8f0]/50">
         {PERSONAL.role}
       </p>
 
