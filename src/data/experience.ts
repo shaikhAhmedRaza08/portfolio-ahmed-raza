@@ -12,8 +12,8 @@ export const EXPERIENCE: ExperienceEntry[] = [
     period: "Jun 2026 – Present",
     points: [
       "Founded and leading Claritec — a software development agency building web apps, mobile apps, automations, and e-commerce solutions for startups and businesses.",
-      "Designed and built the agency website (claritec.in) on Next.js + Vercel",
-      "Set up full business infrastructure — domain, professional email, client contact system",
+      "Designed and built the agency website (claritec.in) on Next.js + Vercel.",
+      "Set up full business infrastructure — domain, professional email, client contact system.",
     ],
   },
   {
